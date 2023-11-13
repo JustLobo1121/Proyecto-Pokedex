@@ -1,0 +1,14 @@
+body {
+    background-color: darkred;
+    text-align: center;
+    font-family: 'VT323', monospace;
+}
+.navbar-brand:hover{
+    color: red;
+}
+.dropdown-item:hover {
+    color: red;
+}
+.dropdown-menu:hover {
+    color: red;
+} 
