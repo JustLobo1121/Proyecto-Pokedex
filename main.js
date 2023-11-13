@@ -46,7 +46,7 @@ function muestraCards(data) {
                       <p class="card-text">Tipo: ${item.type.join(" - ")}</p>
                       <a href="#" class="btn btn-outline-info"  data-bs-toggle="modal" 
                           data-bs-target="#exampleModal"
-                          data-id="${item.id}-${item.weakness.join("/")}-${item.weight}-${item.height}-${item.ThumbnailImage}-${item.name}">
+                          data-id="${item.id}-${item.weakness.join("/")}-${item.weight}-${item.height}-${item.ThumbnailImage}-${item.name}-${item.abilities}">
                           Ver más
                       </a>
                   </div>
@@ -61,10 +61,11 @@ ListaUL.addEventListener("click",(event) => {
     const dataTarget = event.target.dataset.id.split('-')
     myModal.innerHTML = `<h3>Nombre: ${dataTarget[5]}</h3>
                          <h3>ID del pokemon: ${dataTarget[0]}</h3>
+                         <p>Habilidad: ${dataTarget[6]}</p>
                          <p>Peso: ${dataTarget[2]}</p>
                          <p>Altura: ${dataTarget[3]}</p>
                          <p>Debilidades: ${dataTarget[1]}</p>
-                         <img src="${dataTarget[4]}" class="rounded img-thumbnail" alt="${dataTarget[5]}">
+                         <img src="${dataTarget[4]}" class="rounded bg-body-tertiary border img-thumbnail" alt="${dataTarget[5]}">
         `
   }
 })
