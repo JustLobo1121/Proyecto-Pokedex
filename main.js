@@ -7,7 +7,7 @@ let array = []
 
 async function Pokedex() {
   try {
-    const url = '/pokemons.json'
+    const url = './pokemons.json'
     const response =  await fetch(url)
     let data =  await response.json()
     if (response.status === 404) {
