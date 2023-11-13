@@ -3,7 +3,7 @@ const navDrop = document.querySelector("#menu-gene")
 const inputDeBusqueda = document.getElementById("inputBusqueda")
 const myModal = document.querySelector('#modal-body')
 let array = []
-
+// dentro del codigo no hay ningun console.log a exepcion del catch
 
 async function Pokedex() {
   try {
@@ -39,14 +39,14 @@ function muestraCards(data) {
       card.classList.add('col-md-4', 'mb-4');
 
       card.innerHTML = `
-              <div class="card">
+              <div class="card border bg-primary-subtle">
               <img class="card-img-top" src="${item.ThumbnailImage}" alt="${item.ThumbnailAltText}"></img>
-                  <div class="card-body">
+                  <div class="card-body border bg-secondary-subtle">
                       <h5 class="card-title">Nombre: ${item.name}</h5>
                       <p class="card-text">Tipo: ${item.type.join(" - ")}</p>
-                      <a href="#" class="btn btn-primary"  data-bs-toggle="modal" 
+                      <a href="#" class="btn btn-outline-info"  data-bs-toggle="modal" 
                           data-bs-target="#exampleModal"
-                          data-id="${item.id}-${item.weakness.join("/")}-${item.weight}-${item.height}">
+                          data-id="${item.id}-${item.weakness.join("/")}-${item.weight}-${item.height}-${item.ThumbnailImage}-${item.name}">
                           Ver más
                       </a>
                   </div>
@@ -59,8 +59,12 @@ function muestraCards(data) {
 ListaUL.addEventListener("click",(event) => {
   if (event.target.dataset.id) {
     const dataTarget = event.target.dataset.id.split('-')
-    myModal.innerHTML = `<h3>ID del pokemon: ${dataTarget[0]}</h3><p>Peso: ${dataTarget[2]}</p>
-                                <p>Altura: ${dataTarget[3]}</p><p>Debilidades: ${dataTarget[1]}</p>
+    myModal.innerHTML = `<h3>Nombre: ${dataTarget[5]}</h3>
+                         <h3>ID del pokemon: ${dataTarget[0]}</h3>
+                         <p>Peso: ${dataTarget[2]}</p>
+                         <p>Altura: ${dataTarget[3]}</p>
+                         <p>Debilidades: ${dataTarget[1]}</p>
+                         <img src="${dataTarget[4]}" class="rounded img-thumbnail" alt="${dataTarget[5]}">
         `
   }
 })
@@ -76,6 +80,7 @@ inputDeBusqueda.addEventListener("input", () => {
 navDrop.addEventListener("click", (event) => {
   if (event.target.dataset.id) {
     const dataTarget = event.target.dataset.id
+    // no funciona con el switch
     if (dataTarget == "gen1") {
       let filtradas = array.filter((pokemon) => {
         let generacion = pokemon.id <= 151
@@ -145,7 +150,5 @@ async function llamada_Api() {
     muestraCards(filtrados)
     console.log(filtrados)
 }
-// falta filtrar por generacion
-// falta dejar 3 col por un row asi hasta llegar al final de la generacion
 llamada_Api()
   
